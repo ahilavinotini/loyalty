@@ -1,0 +1,518 @@
+/* ============================================================
+   Design System — CSS Custom Properties
+   ============================================================ */
+
+:root {
+  /* --- Colour Palette --- */
+  --color-primary:      #098DFC;
+  --color-navy:         #001E40;
+  --color-accent:       #FFF784;
+  --color-bg:           #FFFFFF;
+  --color-surface:      #F7F8FA;
+  --color-border:       #E4E7EC;
+  --color-text:         #1A2333;
+  --color-text-muted:   #6B7280;
+
+  /* --- Spacing Scale (base-8) --- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  16px;
+  --space-4:  24px;
+  --space-5:  32px;
+  --space-6:  48px;
+  --space-7:  64px;
+  --space-8:  96px;
+
+  /* --- Type Scale --- */
+  --text-xs:   0.75rem;   /* 12px — metadata, labels */
+  --text-sm:   0.875rem;  /* 14px — captions, secondary */
+  --text-base: 1rem;      /* 16px — body copy */
+  --text-lg:   1.125rem;  /* 18px — lead text */
+  --text-xl:   1.25rem;   /* 20px — card titles */
+  --text-2xl:  1.5rem;    /* 24px — section headings */
+  --text-3xl:  2rem;      /* 32px — page headings */
+  --text-4xl:  2.75rem;   /* 44px — hero/display */
+
+  /* --- Component Tokens --- */
+  --radius-sm:       4px;
+  --radius-md:       8px;
+  --radius-lg:       16px;
+  --shadow-sm:       0 1px 3px rgba(0, 30, 64, 0.08);
+  --shadow-md:       0 4px 12px rgba(0, 30, 64, 0.12);
+  --max-width:       720px;   /* article reading width */
+  --max-width-wide:  1100px;  /* home page grid width */
+}
+
+/* ============================================================
+   Base Reset & Global Styles
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+h1, h2, h3, h4 {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--color-navy);
+  line-height: 1.25;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================================================
+   App Root
+   ============================================================ */
+
+#app {
+  min-height: 100vh;
+}
+
+/* ============================================================
+   Layout
+   ============================================================ */
+
+.container {
+  max-width: var(--max-width-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+/* ============================================================
+   Home Header — clean, no background
+   ============================================================ */
+
+.home-header {
+  padding-block: var(--space-6) var(--space-4);
+  padding-inline: var(--space-4);
+  max-width: var(--max-width-wide);
+  margin-inline: auto;
+  margin-bottom: var(--space-4);
+}
+
+.home-header-inner {
+  max-width: var(--max-width-wide);
+  margin-inline: auto;
+}
+
+.home-header h1 {
+  font-size: var(--text-4xl);
+  color: var(--color-navy);
+  margin-bottom: var(--space-2);
+}
+
+.home-header .tagline {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+/* ============================================================
+   Search Bar
+   ============================================================ */
+
+.search-bar-wrap {
+  max-width: var(--max-width-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2) var(--space-3);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-bar:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(9, 141, 252, 0.12);
+}
+
+.search-bar svg {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+.search-bar input {
+  border: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  width: 100%;
+  outline: none;
+}
+
+.search-bar input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   Category Filter Tags
+   ============================================================ */
+
+.category-filters {
+  max-width: var(--max-width-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.filter-tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.filter-tag:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.filter-tag.active {
+  background: var(--color-navy);
+  border-color: var(--color-navy);
+  color: #ffffff;
+}
+
+.filter-tag.active:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* ============================================================
+   Article Grid
+   ============================================================ */
+
+.article-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  max-width: var(--max-width-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+  padding-bottom: var(--space-7);
+}
+
+@media (min-width: 640px) {
+  .article-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .article-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================================
+   Article Card Image
+   ============================================================ */
+
+.article-card-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-1);
+}
+
+/* ============================================================
+   Article Hero Image
+   ============================================================ */
+
+.article-hero-image {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-2);
+}
+
+/* ============================================================
+   Article Card
+   ============================================================ */
+
+.article-card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-top-color 0.2s ease;
+}
+
+.article-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-top-color: var(--color-navy);
+}
+
+/* ============================================================
+   Category Badge
+   ============================================================ */
+
+.category-badge {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--radius-lg);
+  padding: var(--space-1) var(--space-2);
+  align-self: flex-start;
+}
+
+/* ============================================================
+   Article Card Title Link
+   ============================================================ */
+
+.article-card h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: var(--text-base);
+  color: var(--color-navy);
+  line-height: 1.3;
+}
+
+.article-card h2 a {
+  color: var(--color-navy);
+  text-decoration: none;
+}
+
+.article-card h2 a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   Article Date
+   ============================================================ */
+
+.article-date {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   Article Excerpt
+   ============================================================ */
+
+.article-excerpt {
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================================
+   Article Page — coloured top bar
+   ============================================================ */
+
+.article-page {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.article-page::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-2);
+}
+
+.article-page > a:first-child {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: var(--space-1);
+}
+
+
+.article-page > a:first-child:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* ============================================================
+   Article Meta
+   ============================================================ */
+
+.article-meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+/* ============================================================
+   Article Body (Prose)
+   ============================================================ */
+
+.article-body {
+  color: var(--color-text);
+  font-size: var(--text-base);
+  line-height: 1.75;
+}
+
+.article-body h2 {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--color-navy);
+  font-size: var(--text-2xl);
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-3);
+}
+
+.article-body p {
+  margin-bottom: var(--space-3);
+  line-height: 1.75;
+}
+
+.article-body ul,
+.article-body ol {
+  padding-left: var(--space-5);
+  margin-bottom: var(--space-3);
+}
+
+.article-body li {
+  margin-bottom: var(--space-1);
+}
+
+.article-body a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.article-body a:hover {
+  text-decoration: none;
+}
+
+/* ============================================================
+   Empty State
+   ============================================================ */
+
+.empty-state {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: var(--space-8) var(--space-4);
+  font-size: var(--text-base);
+}
+
+/* ============================================================
+   Not Found
+   ============================================================ */
+
+.not-found {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.not-found h1 {
+  color: var(--color-navy);
+  font-size: var(--text-3xl);
+}
+
+.not-found p {
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+}
+
+.not-found a {
+  color: var(--color-primary);
+  font-size: var(--text-sm);
+}
+
+/* ============================================================
+   Responsive Adjustments
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .home-header {
+    padding-block: var(--space-4) var(--space-3);
+  }
+
+  .home-header h1 {
+    font-size: var(--text-3xl);
+  }
+
+  .home-header .tagline {
+    font-size: var(--text-sm);
+  }
+
+  .article-page {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .article-card {
+    padding: var(--space-3);
+  }
+}
