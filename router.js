@@ -1,17 +1,7 @@
 // router.js — History API router
 
 // Detect base path for GitHub Pages (e.g. /loyalty) or local (empty string)
-var BASE_PATH = (function () {
-  var scripts = document.querySelectorAll('script[src]');
-  for (var i = 0; i < scripts.length; i++) {
-    var src = scripts[i].getAttribute('src');
-    if (src && src.indexOf('router.js') !== -1) {
-      // src is like "/loyalty/router.js" or "router.js"
-      return src.replace(/\/?router\.js$/, '').replace(/^\./, '') || '';
-    }
-  }
-  return '';
-}());
+var BASE_PATH = '/loyalty';
 
 /**
  * Strips the base path prefix from a full pathname.
